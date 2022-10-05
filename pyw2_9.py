@@ -1,0 +1,6 @@
+dai=float(input('Nhap chieu dai (cm): '))
+rong=float(input('Nhap chieu rong (cm): '))
+cao=float(input('Nhap chieu cao (cm): '))
+le=int(input('Nhap so luong so le: '))
+print('Dien tich day hinh chu nhat = {} cm\u00b2'.format(round(dai*rong,le)))
+print('The tich hinh khoi = {} cm\u00b3'.format(round(dai*rong*cao,le)))
