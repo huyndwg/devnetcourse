@@ -19,8 +19,6 @@ class Sd_wan():
         }
         response = requests.post(url=url, headers=headers, data=body)
         headers_split = response.headers["set-cookie"].split(";")
-        # jsessionid_pre = headers_split[0].split("=")
-        # jsessionid = jsessionid_pre[1]
         return headers_split[0]
 
     def get_token(jsessionid : str):
@@ -38,16 +36,16 @@ class Sd_wan():
             "X-XSRF-TOKEN" : token
         }
         response = requests.get(url=url, headers=headers)
-        return response.json
+        return response.json()
 
 
 def main():
-    cookies = Sd_wan.get_cookies(end_point="/j_sercurity_check", username="devnetuser", password="RG!_Yw919_83")
+    cookies = Sd_wan.get_cookies(end_point="/j_security_check", username="devnetuser", password="RG!_Yw919_83")
     print(cookies)
     token = Sd_wan.get_token(jsessionid=cookies)
     print(token)
-    # device = Sd_wan.get_device(end_point="", jsesssionid=cookies, token=token)
-    # print(device)
+    device = Sd_wan.get_device(end_point="/device", jsesssionid=cookies, token=token)
+    print(device)
 
 if __name__ == "__main__":
     main()
