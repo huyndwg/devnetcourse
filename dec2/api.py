@@ -39,8 +39,7 @@ def post_message(roomId, text_msg):
     }
 
     response = requests.post(url=url, headers=headers, json=body)
-
-    print(response.content)
+    # print(response.content)
 
 
 if __name__ == "__main__":
