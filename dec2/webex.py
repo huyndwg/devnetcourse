@@ -1,6 +1,7 @@
 from flask import Flask, request
-from api import get_messages, post_messages
+from api import get_message, post_message, get_bot_id
 import json
+
 
 app = Flask(__name__)
 
@@ -10,16 +11,17 @@ def index():
         return "Helo ong gia ngheo kho"
     elif request.method == "POST":
         data = request.get_json()
-        roomId = data['data']['roomId']
-        msgId = data['data']['id']
-        print(json.dumps(data, indent=3))
-        print(roomId)
 
-        usr_msg = get_messages(msgId)
-        print(usr_msg)
+        if get_bot_id() == data['data']['personId']:
+            print("Ignore message from botself")
+        else:
+            roomId = data['data']['roomId']
+            msgId = data['data']['id']
+            print(json.dumps(data, indent=3))
 
-        bot_send_msg = f"Message sent: {usr_msg}"
-        post_messages(roomId=roomId, text_msg=usr_msg)
+            bot_msg = f"Message received: {get_message(msgId)}"
+            post_message(roomId=roomId, text_msg=bot_msg)
+
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=6969)
+    app.run(host="0.0.0.0", port=6969, debug=False)
