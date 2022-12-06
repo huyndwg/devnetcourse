@@ -12,10 +12,6 @@ headers = {
 def get_bot_id():
     url = f'{base_url}/people/me'
 
-    headers = {
-        "Authorization": f"Bearer {access_token}",
-        "Content-Type": "application/json"
-    }
     response = requests.get(url, headers=headers)
 
     return response.json()['id']
