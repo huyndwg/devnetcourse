@@ -1,0 +1,8 @@
+---
+- hosts: Switch
+  gather_facts: no
+
+  tasks:
+    - name: set hostname
+      ios_config:
+        lines: hostname {{ hostname.name }}

@@ -1,0 +1,11 @@
+---
+- name: set ip loopback
+  hosts: Router
+  gather_facts: no
+
+  tasks:
+          - name: Set loopback IPv4 address
+            with_items: "{{ loopback }}"
+            ios_l3_interface:
+                    name: loopback {{ item.name }}
+                    ipv4: "{{ item.ip }}"
