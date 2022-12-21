@@ -1,0 +1,12 @@
+---
+- name: Configure Router 1
+  hosts: R1
+  
+  tasks:
+    - name: Set IP
+      ios_config:
+        parents: Ethernet0/1
+        lines:
+          - no sh 
+          - ip 192.168.1.1 255.255.255.0
+
