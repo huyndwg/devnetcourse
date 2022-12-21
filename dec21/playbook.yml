@@ -22,24 +22,24 @@
         
 
 
-- name: Configure Router 2
-  hosts: R2
-  # gather_facts: false
+# - name: Configure Router 2
+#   hosts: R2
+#   # gather_facts: false
 
-  tasks:
-    - name: Set IP
-      ios_config:
-        parents: "{{ item.int }}"
-        lines:
-          - no sh 
-          - ip address 192.168.{{ item.ip }} 255.255.255.0
+#   tasks:
+#     - name: Set IP
+#       ios_config:
+#         parents: "{{ item.int }}"
+#         lines:
+#           - no sh 
+#           - ip address 192.168.{{ item.ip }} 255.255.255.0
 
-      loop:
-        - { ip: 1.1, int: Ethernet0/1 }
-        - { ip: 12.1, int: Ethernet0/2 }
+#       loop:
+#         - { ip: 1.1, int: Ethernet0/1 }
+#         - { ip: 12.1, int: Ethernet0/2 }
 
-    - name: Configure static route
-      ios_static_route:
-        prefix: 192.168.1.0
-        mask: 255.255.255.0
-        next_hop: 192.168.1.2
+#     - name: Configure static route
+#       ios_static_route:
+#         prefix: 192.168.1.0
+#         mask: 255.255.255.0
+#         next_hop: 192.168.1.2
